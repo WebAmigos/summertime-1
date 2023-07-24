@@ -45,7 +45,7 @@
     "storybook": {
       "executor": "@nx/storybook:storybook",
       "options": {
-        "port": 4400,
+        "port": 4500,
         "configDir": "libs/common-ui/.storybook"
       },
       "configurations": {

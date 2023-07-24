@@ -1,9 +1,10 @@
 import NxWelcome from './nx-welcome';
+import { Button } from '@ems/common-ui';
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="frontend" />
+      <Button label="Click me" />
     </div>
   );
 }
