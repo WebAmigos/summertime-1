@@ -2,16 +2,22 @@ import Link from 'next/link';
 
 export const Menu = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link href="/about">About</Link>
+    <nav className="container border-b-slate-800">
+      <ul className="flex">
+        <li className="mr-6">
+          <Link href="/about" className="text-lg text-black">
+            About
+          </Link>
         </li>
-        <li>
-          <Link href="/employees">Employees</Link>
+        <li className="mr-6">
+          <Link href="/employees" className="text-lg text-black">
+            Employees
+          </Link>
         </li>
-        <li>
-          <Link href="/people">People</Link>
+        <li className="mr-6">
+          <Link href="/people" className="text-lg text-black">
+            People
+          </Link>
         </li>
       </ul>
     </nav>
