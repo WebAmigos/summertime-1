@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EmployeeCard } from './EmployeeCard';
 
 const meta = {
-  title: 'EmployeeCard',
+  title: 'Components/EmployeeCard',
   component: EmployeeCard,
   tags: ['autodocs'],
 } satisfies Meta<typeof EmployeeCard>;
@@ -16,5 +16,6 @@ export const _Primary: Story = {
     firstName: 'Joe',
     lastName: 'Doe',
     role: 'Programmer',
+    picture: 'https://tailwindcss.com/img/erin-lindford.jpg',
   },
 };

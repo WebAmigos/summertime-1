@@ -1,8 +1,28 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Header } from '@ems/common-ui';
-import { EmployeeCard } from 'apps/website/components/EmployeeCard';
+import { EmployeeCard } from '../../components/EmployeeCard';
+
+// good luck!
+type AppStatus<T> =
+  | {
+      // resolved
+      data: T;
+      isLoading: false;
+      hasError: false;
+    }
+  | {
+      // pending
+      data: undefined;
+      isLoading: true;
+      hasError: false;
+    }
+  | {
+      // rejected
+      data: undefined;
+      isLoading: false;
+      hasError: true;
+    };
 
 interface ImageDto {
   id: string;
@@ -27,7 +47,8 @@ interface EmployeeDto {
   };
 }
 
-const Employees = () => {
+// export default async function Page() {
+export default function Page() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [employees, setEmployees] = useState<EmployeeDto[] | null>(null);
@@ -49,7 +70,6 @@ const Employees = () => {
 
   return (
     <main className="mt-6">
-      <Header>Employees</Header>
       {/* {isError && <p>Error!</p>} */}
       {isError ? <p>Error!</p> : null}
       {isLoading && <p>Loading...</p>}
@@ -72,8 +92,4 @@ const Employees = () => {
       </div>
     </main>
   );
-
-  return <div>Movies</div>;
-};
-
-export default Employees;
+}
