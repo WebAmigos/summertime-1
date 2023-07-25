@@ -11,7 +11,7 @@ export const EmployeeCard = ({ firstName, lastName, role, picture }: Props) => {
   return (
     <div className="py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
       <Image
-        className="block mx-auto rounded-full sm:mx-0 sm:shrink-0 w-auto h-auto"
+        className="block mx-auto rounded-full sm:mx-0 sm:shrink-0 w-24 h-auto"
         src={picture}
         width={100}
         height={0}
