@@ -19,6 +19,11 @@ export const Menu = () => {
             People
           </Link>
         </li>
+        <li className="mr-6">
+          <Link href="/reviews" className="text-lg text-black">
+            Reviews
+          </Link>
+        </li>
       </ul>
     </nav>
   );

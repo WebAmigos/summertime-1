@@ -38,6 +38,7 @@ export const Button = ({
   const _bgColor = bgColor ? colors[bgColor] : '';
 
   const classes = clsx(
+    'my-2',
     'px-4 py-1',
     'text-sm text-blue-600',
     'font-semibold',

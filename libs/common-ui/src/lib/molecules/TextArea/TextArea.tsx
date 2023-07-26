@@ -2,31 +2,23 @@ import { forwardRef, useId } from 'react';
 import type { ComponentPropsWithRef, Ref } from 'react';
 import { Label } from '../../atoms/Label';
 
-type Props = ComponentPropsWithRef<'input'> & {
-  // type Props = ComponentProps<'input'> & {
-  // id: string;
-  // value: string | undefined;
-  // type: 'email' | 'password' | 'text';
-  // type: string;
+type Props = ComponentPropsWithRef<'textarea'> & {
   label: string;
-  // onChange: ChangeEventHandler<HTMLInputElement>
 };
 
-// forwardRef
-export const Input = forwardRef(
+export const TextArea = forwardRef(
   (
     // most of props we can skip (e.g. onChange) when we're using rest
-    { value, type, label, onChange, ...rest }: Props,
-    ref: Ref<HTMLInputElement>
+    { value, label, onChange, ...rest }: Props,
+    ref: Ref<HTMLTextAreaElement>
   ) => {
     const id = useId();
     return (
       <div className="mb-2">
         <Label id={id}>{label}</Label>
-        <input
+        <textarea
           id={id}
           ref={ref}
-          type={type}
           defaultValue={value}
           onChange={onChange}
           className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
@@ -42,4 +34,4 @@ export const Input = forwardRef(
 );
 
 // for forwardRefs, memo, providers
-Input.displayName = 'ForwardRef (Input)';
+TextArea.displayName = 'ForwardRef (Input)';
