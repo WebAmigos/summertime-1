@@ -13,4 +13,7 @@ export class Review {
 
   @Column({ default: false })
   isActive: boolean;
+
+  // @Column()
+  // sentiment: string;
 }

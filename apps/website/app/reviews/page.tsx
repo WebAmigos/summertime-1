@@ -30,6 +30,11 @@ export default async function Page() {
         user: data.name,
         content: data.review,
       }),
+      // cache: 'force-cache' // getStaticProps
+      // cache: 'no-store', // getServerSideProps
+      // next: {
+      //   revalidate: 0
+      // }
     })
       .then((response) => {
         console.log({ response });

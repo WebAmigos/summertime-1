@@ -16,6 +16,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         database: process.env.DATABASE_NAME, // name of our database,
         autoLoadEntities: true, // models will be loaded automatically
         synchronize: true,
+        migrationsTableName: "custom_migration_table",
       })
     }),
     ReviewsModule
