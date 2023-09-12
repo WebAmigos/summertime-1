@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ReviewsModule } from './reviews/review.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { OrderModule } from './orders/order.module';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -16,10 +17,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         database: process.env.DATABASE_NAME, // name of our database,
         autoLoadEntities: true, // models will be loaded automatically
         synchronize: true,
-        migrationsTableName: "custom_migration_table",
-      })
+        migrationsTableName: 'custom_migration_table',
+      }),
     }),
-    ReviewsModule
+    ReviewsModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
