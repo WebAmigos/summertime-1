@@ -29,7 +29,9 @@ export const Checkbox = ({
         checked={checked}
         onChange={handleChange}
       />
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} style={{ display: 'inline-block', width: 150 }}>
+        {label}
+      </label>
     </div>
   );
 };

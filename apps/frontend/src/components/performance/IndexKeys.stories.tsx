@@ -7,13 +7,13 @@ export default {
 
 export const ReactKeysIndex = () => {
   const [items, setItems] = useState([
-    { id: useId(), name: 'A', value: '1️⃣ first' },
-    { id: useId(), name: 'B', value: '2️⃣ second' },
+    { id: useId(), name: 'A', value: '0️⃣ zero' },
+    { id: useId(), name: 'B', value: '1️⃣ one' },
   ]);
   const newId = useId();
 
   const addItem = () => {
-    setItems([{ id: newId, name: 'C', value: '3️⃣ third' }, ...items]);
+    setItems([{ id: newId, name: 'C', value: '2️⃣ two' }, ...items]);
   };
 
   return (
