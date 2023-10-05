@@ -44,7 +44,7 @@ export const Button = ({
     'font-semibold',
     'rounded-full border border-blue-200',
     'hover:text-white hover:bg-blue-600 hover:border-transparent',
-    'focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2',
+    // 'focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2',
     'dark:text-blue-200',
     className
   );

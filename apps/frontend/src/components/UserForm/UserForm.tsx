@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import './UserForm.module.css';
 
@@ -7,7 +7,9 @@ export const UserForm = () => {
   const [age, setAge] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
 
-  const person = { firstName, age };
+  const person = useMemo(() => {
+    return { firstName, age };
+  }, [firstName, age]);
 
   useEffect(() => {
     console.log('Person: ', person);

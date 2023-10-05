@@ -5,7 +5,9 @@ export const Counter = () => {
   const [count, setCount] = useState(0);
 
   const adjustCount = (value: number) => {
-    setCount(count + value);
+    setCount((currentState) => currentState + value);
+    setCount((currentState) => currentState + value);
+    console.log(value);
   };
 
   return (

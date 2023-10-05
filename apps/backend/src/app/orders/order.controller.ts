@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Sse } from '@nestjs/common';
-import { OrderService } from './order.service';
-import { Observable, fromEvent, interval, map, pipe } from 'rxjs';
-import { SSEService } from './event.service';
+import { Controller, Sse, Post } from '@nestjs/common';
+import { Observable, fromEvent, interval, map } from 'rxjs';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+
+import { Currency, OrderState, OrderStatus } from '@ems/contracts';
+
+import { SSEService } from './event.service';
 
 // interface MessageEvent {
 //   data: string | object;
@@ -11,6 +13,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 const NEW_ORDER_EVENT_NAME = 'new-order';
 
 // The sse method returns an Observable that emits multiple MessageEvent (in this example, it emits a new MessageEvent every second). The MessageEvent object should respect the following interface to match the specification
+
 export interface MessageEvent {
   data: string | object;
   id?: string;
@@ -21,18 +24,52 @@ export interface MessageEvent {
 @Controller('orders')
 export class OrderController {
   constructor(
-    private readonly orderService: OrderService,
     private sseService: SSEService,
     private eventEmitter: EventEmitter2
   ) {}
 
-  @Get()
-  getHello() {
-    return this.orderService.getHello();
+  @Sse('/:id/status')
+  sendEvent(): Observable<MessageEvent> {
+    return interval(10000).pipe(
+      map((num: number) => ({
+        data: {
+          status: OrderStatus.COMPLETED,
+          totalValue: {
+            value: 123,
+            currency: Currency.PLN,
+          },
+          netValue: {
+            value: 100,
+            currency: Currency.PLN,
+          },
+        } satisfies OrderState,
+      }))
+    );
+
+    // option with receiving data from events
+    // return fromEvent(this.eventEmitter, NEW_ORDER_EVENT_NAME).pipe(
+    //   map((_data: any) => {
+    //     return new MessageEvent('new-order', {
+    //       data: { status: 'new', ..._data },
+    //     });
+    //   })
+    // );
+
+    // return interval(10000).pipe(
+    //   map((num: number) => ({
+    //     data: { status: num },
+    //   }))
+    // );
   }
 
-  @Sse('event')
-  // BASIC
+  // sendEvent(): Observable<MessageEvent> {
+  //   return fromEvent(this.eventEmitter, NEW_ORDER_EVENT_NAME).pipe(
+  //     map((_data) => {
+  //       return new MessageEvent('new-order', { data: 'new order' });
+  //     })
+  //   );
+  // }
+
   // sendEvent(): Observable<MessageEvent> {
   //   return interval(1000).pipe(
   //     map((num: number) => ({
@@ -40,20 +77,20 @@ export class OrderController {
   //     }))
   //   );
   // }
+
   // FORM_EVENT
-  sendEvent(): Observable<MessageEvent> {
-    return fromEvent(this.eventEmitter, NEW_ORDER_EVENT_NAME).pipe(
-      map((_data) => {
-        return new MessageEvent('new-order', { data: 'new order' });
-      })
-    );
-  }
+  // sendEvent(): Observable<MessageEvent> {
+  //   return fromEvent(this.eventEmitter, NEW_ORDER_EVENT_NAME).pipe(
+  //     map((_data) => {
+  //       return new MessageEvent('new-order', { data: 'new order' });
+  //     })
+  //   );
+  // }
   // Subject
 
   @Post('emit')
   emit() {
-    // this.eventEmitter.emit('new-order');
-    this.sseService.emitEvent(NEW_ORDER_EVENT_NAME);
+    this.sseService.emitEvent(NEW_ORDER_EVENT_NAME, { sth: 'ok' });
     return { result: 'ok' };
   }
 }

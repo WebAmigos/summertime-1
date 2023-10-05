@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ems/common-ui": ["libs/common-ui/src/index.ts"]
+      "@ems/common-ui": ["libs/common-ui/src/index.ts"],
+      "@ems/contracts": ["libs/contracts/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
