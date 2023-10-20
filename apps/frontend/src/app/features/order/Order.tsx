@@ -49,7 +49,7 @@ export function Order({ id }: Props) {
 
         if (eventData.status === OrderStatus.COMPLETED) {
           dispatch(markAsCompleted());
-          // eventSource.close();
+          eventSource.close();
         }
       } catch (e) {
         /* empty */
@@ -59,7 +59,7 @@ export function Order({ id }: Props) {
       // setStock(stock);
     };
     return () => {
-      // eventSource.close();
+      eventSource.close();
     };
   }, []);
 
